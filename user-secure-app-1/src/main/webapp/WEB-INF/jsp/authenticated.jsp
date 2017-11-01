@@ -5,15 +5,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Success</title>
 </head>
 <body>
-	<h2>Secured users list</h2>
+
+	<h2>Login success</h2>
+	<br>
+	<br>
+
+	<c:url value="/admin/users.html" var="securedUsers" />
+	<a href="${securedUsers}">Secured users list</a>
 
 	<br>
 	<br>
-	<c:url value="/j_spring_security_logout" var="defaultLogoutUrl" />
-	
 	<c:url value="/logout.html" var="customLogoutUrl" />
 	<a href="${customLogoutUrl}">Logout</a>
 

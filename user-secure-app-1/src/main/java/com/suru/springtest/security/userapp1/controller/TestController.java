@@ -8,6 +8,7 @@ public class TestController {
 
 	@RequestMapping("/home")
 	public String showHome() {
+
 		return "home";
 	}
 
@@ -16,9 +17,19 @@ public class TestController {
 		return "showMessage";
 	}
 
-	@RequestMapping("/admin/users")
+	@RequestMapping("/admin/users.html")
 	public String showUsers() {
 		return "users";
+	}
+
+	@RequestMapping("/login.html")
+	public String showLogin() {
+		return "login";
+	}
+
+	@RequestMapping("/authenticated.html")
+	public String showLoginSuccess() {
+		return "authenticated";
 	}
 
 }
