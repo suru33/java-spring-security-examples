@@ -8,18 +8,28 @@
 <title>Success</title>
 </head>
 <body>
-
 	<h2>Login success</h2>
 	<br>
 	<br>
-
 	<c:url value="/admin/users.html" var="securedUsers" />
 	<a href="${securedUsers}">Secured users list</a>
-
+	<br>
+	<br>
+	<c:url value="/admin/messages.html" var="adminMessages" />
+	<a href="${adminMessages}">Admin Messages - permitAll</a>
+	<br>
+	<br>
+	<c:url value="/admin/main_messages.html" var="mainAdminMessages" />
+	<a href="${mainAdminMessages}">Main Admin Messages - permit only
+		admin2 user</a>
+	<br>
+	<br>
+	<c:url value="/admin/other_messages.html" var="otherMessages" />
+	<a href="${otherMessages}">Other Messages - permit ROLE_ADMIN and
+		user2</a>
 	<br>
 	<br>
 	<c:url value="/logout.html" var="customLogoutUrl" />
 	<a href="${customLogoutUrl}">Logout</a>
-
 </body>
 </html>

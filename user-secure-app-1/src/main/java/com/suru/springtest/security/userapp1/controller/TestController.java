@@ -8,7 +8,6 @@ public class TestController {
 
 	@RequestMapping("/home")
 	public String showHome() {
-
 		return "home";
 	}
 
@@ -20,6 +19,21 @@ public class TestController {
 	@RequestMapping("/admin/users.html")
 	public String showUsers() {
 		return "users";
+	}
+
+	@RequestMapping("/admin/messages.html")
+	public String showAdminMessages() {
+		return "admin_messages";
+	}
+
+	@RequestMapping("/admin/main_messages.html")
+	public String showMainAdminMessages() {
+		return "main_admin_messages";
+	}
+
+	@RequestMapping("/admin/other_messages.html")
+	public String showOtherMessages() {
+		return "other_messages";
 	}
 
 	@RequestMapping("/login.html")

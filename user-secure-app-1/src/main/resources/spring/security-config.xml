@@ -4,11 +4,23 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<security:http auto-config="true">
+	<security:http auto-config="true" use-expressions="true">
 
 		<!-- intercept URLs -->
-		<security:intercept-url pattern="/admin/*" access="ROLE_ADMIN" />
+<!-- 	<security:intercept-url pattern="/admin/*" access="ROLE_ADMIN" />
 		<security:intercept-url pattern="/authenticated.html" access="ROLE_USER" />
+ -->
+ 		<!-- permit all users -->
+		<security:intercept-url pattern="/admin/messages.html" access="permitAll" />
+ 		<!-- permit ROLE_ADMIN and user name 'admin2' -->
+		<security:intercept-url pattern="/admin/main_messages.html" access="hasRole('ROLE_ADMIN') and principal.username=='admin2'" />
+ 		<!-- permit ROLE_ADMIN or user name 'user2' -->
+		<security:intercept-url pattern="/admin/other_messages.html" access="hasRole('ROLE_ADMIN') or principal.username=='user2'" />
+ 		<!-- permit only ROLE_ADMIN except above violations -->
+		<security:intercept-url pattern="/admin/*" access="hasRole('ROLE_ADMIN')" />
+ 		<!-- permit if ROLE_ADMIN or ROLE_USER -->
+		<security:intercept-url pattern="/authenticated.html" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
+
 
 		<!-- login form configuration -->
 		<security:form-login login-page="/login.html" authentication-failure-url="/login.html?error=true"
@@ -21,9 +33,12 @@
 
 	<security:authentication-manager>
 		<security:authentication-provider>
+			<!-- users list along with roles -->
 			<security:user-service>
-				<security:user name="admin1" authorities="ROLE_ADMIN, ROLE_USER" password="password" />
-				<security:user name="user1" authorities="ROLE_USER" password="password" />
+				<security:user name="admin1" password="password" authorities="ROLE_ADMIN, ROLE_USER" />
+				<security:user name="admin2" password="password" authorities="ROLE_ADMIN, ROLE_USER" />
+				<security:user name="user1" password="password" authorities="ROLE_USER" />
+				<security:user name="user2" password="password" authorities="ROLE_USER" />
 			</security:user-service>
 		</security:authentication-provider>
 	</security:authentication-manager>
